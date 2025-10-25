@@ -36,7 +36,8 @@ This side-by-side comparison helps beginners *see and feel* the power of structu
 
 ```bash
 git clone https://github.com/<your-username>/adk-ceritanenek.git
-cd adk-ceritanenek
+cd adk-ceritanenek```
+---
 
 ### What You’ll Learn
 -How to define an agent using ADK Foundations
