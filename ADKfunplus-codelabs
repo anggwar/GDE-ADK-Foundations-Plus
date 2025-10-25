@@ -1,4 +1,3 @@
-```markdown
 summary: Build Agents with ADK: Foundations+ — CeritaNenek 👵🏻
 id: build-agents-with-adk-foundations-plus
 categories: ai, adk, vertex-ai, beginners
@@ -51,8 +50,6 @@ By comparing them, you’ll understand how **instruction design** changes an age
 
 ## 3. Create Your First Agent — Regular Prompt
 
-Let’s start simple.
-
 Create a file called `cerita_nenek_basic.py`:
 
 ```python
@@ -65,17 +62,21 @@ cerita_nenek_basic = Agent(
 
 print(cerita_nenek_basic.run("Tell me a story about honesty"))
 ```
-🧠 Try running this locally:
 
+Run locally:
+```bash
 python cerita_nenek_basic.py
+```
+
 Observe how the story is short but plain — it lacks tone, humor, and cultural flavor.
 
-4. Upgrade with Power Prompting
+---
 
-Now let’s supercharge Nenek’s storytelling power.
+## 4. Upgrade with Power Prompting
 
-Create a new file: cerita_nenek_power.py
+Create a new file: `cerita_nenek_power.py`
 
+```python
 from adk import Agent
 
 cerita_nenek_power = Agent(
@@ -94,67 +95,69 @@ Example tone:
 > “Dulu waktu Nenek kecil, nasi goreng cuma 500 perak. Tapi rasa syukurnya, Nak, itu yang mahal.”
 
 If user asks for a story, respond naturally like a conversation, not a formal narration.
-    """,
+""",
 )
 
 print(cerita_nenek_power.run("Nenek, cerita dong tentang kesabaran"))
+```
 
-
-Now run:
-
+Run:
+```bash
 python cerita_nenek_power.py
+```
 
+Notice the difference — tone, humor, empathy, and local flavor.
 
-You’ll see the difference — tone, context, humor, and wisdom.
+---
 
-5. Compare Outputs
+## 5. Compare Outputs
 
 Ask both agents the same question:
-
-“Nenek, cerita tentang menepati janji dong.”
+> “Nenek, cerita tentang menepati janji dong.”
 
 Compare:
+- Story depth  
+- Naturalness of language  
+- Emotional tone  
 
-Story depth
+Discuss what changed just by upgrading the **instruction design**.
 
-Naturalness of language
+---
 
-Emotional tone
+## 6. Deploy the Agent (Optional)
 
-Discuss what changed just by upgrading the instruction design.
-
-6. Deploy the Agent (Optional)
-
-You can deploy this agent as a simple API using Cloud Run:
-
+Deploy your agent using Cloud Run:
+```bash
 gcloud run deploy ceritanenek-agent \
   --source . \
   --platform managed \
   --region asia-southeast2 \
   --allow-unauthenticated
+```
 
-
-Then test it via:
-
+Test it:
+```bash
 curl https://<your-agent-url>/query -d "Nenek, ceritain tentang hujan pertama"
+```
 
-7. Wrap Up
+---
+
+## 7. Wrap Up
 
 You’ve just learned:
-✅ How ADK agents are structured
-✅ How prompt quality = agent quality
-✅ How to personalize tone, culture, and empathy
+✅ How ADK agents are structured  
+✅ How **prompt quality = agent quality**  
+✅ How to personalize tone, culture, and empathy  
 
-CeritaNenek is your first step toward building agents that feel human.
+**CeritaNenek** is your first step toward building agents that *feel human.*
 
-🌱 Next Steps
+---
 
-Try adding memory or context using ADK’s storage features
+### 🌱 Next Steps
+- Add memory or context so Nenek remembers past stories  
+- Let users upload their own stories for Nenek to comment on  
+- Remix into a new idea — **“MendingIniNek”**, a hilarious phone recommendation agent for grandparents 😂  
 
-Let users “upload” their stories and let Nenek remember them
+---
 
-Or remix this into a new idea — “MendingIniNek” 😂 (a humorous phone recommendation agent for grandparents)
-
-🎉 Congratulations! You’ve completed Build Agents with ADK: Foundations+ — CeritaNenek.
-
-
+🎉 Congratulations! You’ve completed **Build Agents with ADK: Foundations+ — CeritaNenek**.
