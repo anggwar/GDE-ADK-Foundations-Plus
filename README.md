@@ -37,3 +37,16 @@ This side-by-side comparison helps beginners *see and feel* the power of structu
 ```bash
 git clone https://github.com/<your-username>/adk-ceritanenek.git
 cd adk-ceritanenek
+
+### What You’ll Learn
+-How to define an agent using ADK Foundations
+-How to give your agent memory, reasoning, and personality
+-How to apply the Power Prompt Formula for better agent behavior
+-How to deploy and test the agent in your local environment or Cloud Run
+
+### Workshop Goals
+-By the end of this codelab, you will:
+-Understand the structure of an ADK agent
+-Learn how to write and refine instructions
+-Experience the difference between regular and power-prompted agents
+-Deploy your CeritaNenek storyteller agent and share stories that feel alive ✨
