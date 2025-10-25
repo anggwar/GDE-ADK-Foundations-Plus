@@ -52,3 +52,6 @@ cd adk-ceritanenek
 -Learn how to write and refine instructions
 -Experience the difference between regular and power-prompted agents
 -Deploy your CeritaNenek storyteller agent and share stories that feel alive ✨
+
+Get Started
+Open the Codelab →
