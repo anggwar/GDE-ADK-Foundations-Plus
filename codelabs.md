@@ -269,6 +269,10 @@ root_agent = Agent(
 ```
 Restart the agent command: `adk web`
 
+### Power Prompting tips:
+You can ask gemini on the web to create the power prompt for you. You can either describe your requirements
+Or just type: `Turn this into power prompt ...`
+
 ---
 
 ## 8. Compare the Experience
