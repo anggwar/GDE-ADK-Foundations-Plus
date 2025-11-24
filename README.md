@@ -1,54 +1,44 @@
-# Build Agents with ADK: Foundations+
-### Workshop Project — "CeritaNenek" 👵🏻🪄
-*Learn the difference between regular and power-prompted agents using Google’s Agentic Development Kit (ADK).*
+# Build Agents with ADK: Foundations+ 👵🏻✨
+### Workshop Project — "CeritaNenek"
+
+*Learn the difference between regular agents and **Power-Prompted** agents using Google’s Agentic Development Kit (ADK) and the new **Gemini 3.0 Pro Preview**.*
 
 
 ---
 
 
-## 🧩 Overview
-This workshop extends the official [Build Agents with ADK: Foundations](https://codelabs.developers.google.com/devsite/codelabs/build-agents-with-adk-foundation?hl=en) codelab with a fun, local twist — **CeritaNenek**, an Indonesian storytelling agent.
-hence - the plus
+## 0. Overview
 
+In this extended version of the [ADK Foundations Codelab](https://codelabs.developers.google.com/devsite/codelabs/build-agents-with-adk-foundation) by Thu Ya Kyaw, you will embark on a journey to build **CeritaNenek** — a virtual Indonesian grandmother who doesn't just chat, but comforts you with warmth and folklore.
 
-You’ll build **two versions of the same agent**:
-1. A **basic version** using simple instructions (regular prompt)
-2. An **enhanced version** using **power prompting** for richer, more human-like storytelling
+We will build two versions of the same agent to demonstrate how **Power Prompting** transforms an AI's personality.
 
+### 📚 What You’ll Learn
+* The fundamentals of the **Agent Development Kit (ADK)**.
+* How to use the *NEW* **Gemini 3.0 Pro Preview** model for superior reasoning.
+* The difference between a **Basic Instruction** and a **Power Prompt**.
+* How to engineer empathy, cultural context, and structure into an agent.
 
-This side-by-side comparison helps beginners *see and feel* the power of structured prompting in action.
+### 🛠️ What You’ll Build
+* **Agent A (Basic):** A factual, cold storyteller.
+* **Agent B (Power):** "Nenek Lestari," a warm, culturally aware agent who uses sensory details and metaphors to provide emotional support.
+
+### 🧰 What You’ll Need
+* A **Google Cloud Project** with billing enabled.
+* **Python 3.10+** installed.
+* Access to **Vertex AI** and the `gemini-3-pro-preview` model.
 
 
 ---
 
 
-## 🧰 Before You Begin
+## 🚀 Quick Start
 
-
-### Prerequisites
-- A **Google Cloud account** with billing enabled
-- Basic familiarity with Python
-- A working understanding of prompt-based AI
-- Installed tools:
-- [Google Cloud SDK](https://cloud.google.com/sdk/docs/install)
-- [Node.js & npm](https://nodejs.org/)
-- [Python 3.10+](https://www.python.org/downloads/)
-- Enabled APIs:
-- Vertex AI API
-- Cloud Run API
-- Artifact Registry API
-
-
-### Recommended setup
-- Open the project in **Vertex AI Workbench** (Jupyter Notebook) or **Cloud Shell Editor**
-- Clone this repo:
-
-
+**Clone the repository:**
 ```bash
-git clone https://github.com/<your-username>/adk-ceritanenek.git
-cd adk-ceritanenek
+    git clone [https://github.com/anggwar/GDE-ADK-Foundations-Plus.git](https://github.com/anggwar/GDE-ADK-Foundations-Plus.git)
+    cd GDE-ADK-Foundations-Plus
 ```
-
 
 ---
 
@@ -75,7 +65,7 @@ By the end of this codelab, you will:
 
 
 ## 🚀 Get Started
-👉 [Open the Codelab →](./codelab-ceritanenek.md)
+👉 [Open the Codelab →](./codelab.md)
 
 
 ---
