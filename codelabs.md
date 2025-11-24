@@ -1,54 +1,54 @@
+```markdown
 summary: Build Agents with ADK: Foundations+ — CeritaNenek 👵🏻
 id: build-agents-with-adk-foundations-plus
 categories: ai, adk, vertex-ai, beginners
 status: Published
 author: Angga Agia Wardhana
+```
 
 # Build Agents with ADK: Foundations+ — CeritaNenek 👵🏻
 
 ---
 
 ## 1. Introduction
-In this workshop, we are exploring the concept of **"Garbage In, Garbage Out"** in AI. If you give an agent a boring instruction, you get a boring result.
 
-We will build **CeritaNenek** twice. First, as a standard bot. Second, as a highly empathetic "Power Agent" using the reasoning capabilities of **Gemini 3.0 Pro Preview**.
+In this workshop, we are exploring the concept of **"Garbage In, Garbage Out"** in AI. If you give an agent a generic instruction, you get a generic result.
+
+We will build **CeritaNenek** agent twice:
+1.  **First:** As a standard bot with basic instructions.
+2.  **Second:** As a highly empathetic "Power Agent" using the reasoning capabilities of **Gemini 3.0 Pro Preview**.
 
 ---
 
 ## 2. Environment Setup
 ### Create a Google Cloud project
-1. Navigate to console.cloud.google.com/projectcreate
-2. Enter the required information:
-- Project name - you can input any name you desired (e.g. genai-workshop)
-- Location - leave it as No Organization
-- Billing account - If you see this option, select Google Cloud Platform Trial Billing Account.
-Don't worry if you don't see this option. Just proceed to the next step.
-3. Copy down the generated Project ID, you will need it later.
-4. If everything is fine, click on Create button
+1.  Navigate to the [Google Cloud Console Project Selector](https://console.cloud.google.com/projectcreate).
+2.  **Project Name:** Enter a name (e.g., `genai-workshop`).
+3.  **Location:** Leave as "No Organization" if using a personal account.
+4.  **Billing:** Ensure a billing account is selected (e.g., "Google Cloud Platform Trial").
+5.  Click **Create**.
+6.  **Important:** Note your **Project ID**. You will need it throughout this workshop.
 
 ### Configure Cloud Shell
-1. Launch Cloud Shell
-Navigate to shell.cloud.google.com and if you see a popup asking you to authorize, click on Authorize.
-2. Set Project ID
-Execute the following command in the Cloud Shell terminal to set the correct Project ID. Replace <your-project-id> with your actual Project ID copied from the project creation step above.
-```bash
-gcloud config set project <your-project-id>
-```
-You should now see that the correct project is selected within the Cloud Shell terminal. The selected Project ID is highlighted in yellow.
+1.  Launch [Cloud Shell](https://shell.cloud.google.com). If prompted, click **Authorize**.
+2.  **Set Project ID:** Execute the following command in the terminal. Replace `<your-project-id>` with your actual ID.
 
-3. Enable required APIs
-To use Google Cloud services, you must first activate their respective APIs for your project. Run the commands below in the Cloud Shell terminal to enable the services for this Codelab:
-```bash
-gcloud services enable aiplatform.googleapis.com
-```
-If the operation was successful, you'll see Operation/... finished successfully printed in your terminal.
+    ```bash
+    gcloud config set project <your-project-id>
+    ```
+    > **Note:** Your Project ID should now be highlighted in yellow in the terminal prompt.
 
+3.  **Enable APIs:** Enable the Vertex AI API required for this codelab:
+
+    ```bash
+    gcloud services enable aiplatform.googleapis.com
+    ```
 ---
 
-## 3. Create a Python virtual environment
+## 3. Python Environment Setup
 Before starting any Python project, it's good practice to create a virtual environment. This isolates the project's dependencies, preventing conflicts with other projects or the system's global Python packages.
 
-Note: We'll be using uv to create our virtual environment instead of the standard venv package. It's an incredibly fast Python package and project manager written in Rust.
+Note: We will use `uv`, an extremely fast Python package manager written in Rust, to manage our environment.
 
 ### 1. Create project directory and navigate into it:
 ```bash
@@ -61,34 +61,37 @@ uv venv --python 3.12
 source .venv/bin/activate
 ```
 You'll see (ai-agents-adk) prefixing your terminal prompt, indicating the virtual environment is active.
-### 3. Install adk page
+
+### 3. Install ADK
 ```bash
 uv pip install google-adk
 ```
-Note: If you accidentally close the terminal, you will need to go into ai-agents-adk folder and execute source .venv/bin/activate again.
+Tip: If you accidentally close the terminal, you will need to go into ai-agents-adk folder and execute source .venv/bin/activate again.
 
 ## 4. Create Your Agent 
-With your environment ready, it's time to create your AI agent's foundation. ADK requires a few files to define your agent's logic and configuration:
+ADK requires a specific file structure to define your agent's logic. We will generate this using the CLI.
 
 agent.py: Contains your agent's primary Python code, defining its name, the LLM it uses, and core instructions.
 __init__.py: Marks the directory as a Python package, helping ADK discover and load your agent definition.
 .env: Stores sensitive information and configuration variables like API key, Project ID, and location.
-This command will create a new directory named ceritanenek containing the three essential files.
+### Initialize the Agent
+Run the following command to create a new agent named ceritanenek:
 ```bash
 adk create ceritanenek
 ```
 Once the command is executed, you will be asked to choose a few options to configure your agent.
 
-For the first step, choose option 1 to use the gemini-2.5-flash model, a fast and efficient model perfect for conversational tasks.
-Note: **FOLLOW THIS STEP! DO NOT DEVIATE**
+### Configuration Prompts
+Follow the prompts exactly as shown below.
+
+### 1. Choose the Model Select Option 1 (gemini-2.5-flash).
+Note: We select 2.5 Flash here for the initial setup. We will manually upgrade the code to Gemini 3.0 Pro in a later step.
 ```bash
 Choose a model for the root agent:
 1. gemini-2.5-flash
 2. Other models (fill later)
 Choose model (1, 2): 1
 ```
-why still 2.5? because this is the easiest options when creating your basic ADK agents. we will change the models later. relax.
-
 For the second step, choose Vertex AI (option 2), Google Cloud's powerful, managed AI platform, as the backend service provider.
 ```bash
 Choose a model for the root agent:
@@ -114,7 +117,7 @@ Agent created in /home/<your-username>/ai-agent-adk/personal_assistant:
 - agent.py
 
 ## 5. Exploring codes and creating the first persona
-To view the created files, open the ai-agents-adk folder in the Cloud Shell Editor.
+To view the created files, open the Cloud Shell Editor (click Open Editor or the Folder icon). Navigate to the ai-agents-adk folder.
 
 Click File > Open Folder... in the top menu.
 Find and select the ai-agents-adk folder
@@ -160,8 +163,10 @@ name="root_agent": A unique identifier for your agent. This is how ADK will reco
 - model="gemini-2.5-flash": This crucial parameter specifies which Large Language Model (LLM) your agent will use as its underlying "brain" for understanding, reasoning, and generating responses. gemini-2.5-flash is a fast and efficient model suitable for conversational tasks.
 - description="...": This provides a concise summary of the agent's purpose or capabilities. The description is more for human understanding or for other agents in a multi-agent system to understand what this particular agent does. It's often used for logging, debugging, or when displaying information about the agent.
 - instruction="...": This is the system prompt that guides your agent's behavior and defines its persona. It tells the LLM how it should act and what its primary purpose is. In this case, it establishes the agent as a "helpful assistant." This instruction is key to shaping the agent's conversational style and capabilities.
-this is where the fun starts!
-change your agent.py to this:
+
+### Modifying agent.py
+Open ai-agents-adk/ceritanenek/agent.py. You will see the default "helpful assistant" code.
+Let's change this to our Basic persona. Replace the entire content of agent.py with the following:
 ```python
 from google.adk.agents.llm_agent import Agent
 
@@ -177,14 +182,18 @@ root_agent = Agent(
     instruction=BASIC_INSTRUCTION,
 )
 ```
+Note: We have now manually updated the model parameter to gemini-3-pro-preview.
 
 ## 6. Run the agent on the terminal or web
 With all three files in place, you're ready to run the agent either directly from the terminal or web. 
+
+### Option A: The Terminal/CLI/Cloudshell
 To run on terminal/cloudshell, run the following adk run command in the terminal:
 ```bash
 adk run ceritanenek
 ```
 
+### Option B: The web UI (recommended for beginners)
 To run the agent on web using UI:
 ```bash
 adk web
@@ -204,30 +213,26 @@ INFO:     Waiting for application startup.
 INFO:     Application startup complete.
 INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
-You have two options to access the development UI:
+You have two options to access the web development UI:
 
-Open via Terminal
-Ctrl + Click or Cmd + Click on the link (e.g., http://localhost:8000) as shown in the terminal.
-Open via Web Preview
-Click the Web Preview button,
-Select Change Port.
-Enter the port number (e.g., 8000)
-Click Change and Preview
+1. Open via Terminal
+- Ctrl + Click or Cmd + Click on the link (e.g., http://localhost:8000) as shown in the terminal.
+2. Open via Web Preview
+- Click the Web Preview button,
+- Select Change Port.
+- Enter the port number (e.g., 8000)
+- Click Change and Preview
 
-
-You'll then see the chat application-like UI appear in your browser. Go ahead and chat with your virtual grandma through this interface!
-
-You'll notice that Markdown formatting now displays correctly, and this UI also lets you debug and investigate each messaging event, the agent's state, user requests, and much more. Happy chatting!
+Test it: Type "Hello" or ask for a story. Notice how the response is factual and perhaps a bit "direct." This is the result of our basic instruction.
 
 ---
 
 ## 7. Upgrade with Power Prompting
-now you have seen the basic agent, we now move to the power prompting part.
-Power prompting is basically giving more details in the instructions of your agent, that way it will behave more accurately, and give response according to what we have planned.
+Now, let's apply Power Prompting. This involves giving the agent a specific Role, Context, Task, Structure, and Tone.
 
-remember to control + c in the cloudshell to stop the agent first and close the tab.
-
-now let's edit agent.py into this:
+1. Stop the running agent (Press Ctrl + C in the terminal).
+2. Open agent.py again.
+3. Replace the code with the Power Agent version below:
 ```python
 from google.adk.agents.llm_agent import Agent
 
@@ -262,21 +267,20 @@ root_agent = Agent(
     instruction=POWER_INSTRUCTION,
 )
 ```
-
-you can run it via terminal or web using previous section command
+Restart the agent command: `adk web`
 
 ---
 
-## 8. Compare Outputs
+## 8. Compare the Experience
 
-Say hi to the agents, and see the difference.
+Chat with Nenek Lestari. Try saying: "Halo nek"
 
-Compare:
-- Story depth  
-- Naturalness of language  
-- Emotional tone  
+Compare the differences:
+- Story depth: Is it just a plot summary, or a narrative?
+- Naturalness: Does it feel like reading Wikipedia or talking to a human?
+- Emotional tone: Do you feel the "warmth"?
 
-Discuss what changed just by upgrading the **instruction design**.
+This demonstrates that Instruction Design is just as important as the code itself.
 
 ---
 
@@ -304,15 +308,15 @@ By starting with `adk create` and upgrading the code, you learned:
 1.  How to scaffold an agent quickly with the CLI.
 2.  How to swap models (from Flash to Pro Preview).
 3.  How **Power Prompting** changes an agent from a text generator into a persona.
-4.  
+
 **CeritaNenek** is your first step toward building agents that *feel human.*
 
 ---
 
 ### 🌱 Next Steps
-- Add memory or context so Nenek remembers past stories  
-- Let users upload their own stories for Nenek to comment on  
-- Remix into a new idea — **“MendingIniNek”**, a hilarious phone recommendation agent for grandparents 😂
+- Add Memory: Give Nenek context so she remembers past stories.
+- Multimodal: Let users upload photos of their food for Nenek to comment on!
+- Remix: Create "MendingIniNek" — a hilarious phone recommendation agent for grandparents.
 
 How? ask Gemini 3 🤭
 
