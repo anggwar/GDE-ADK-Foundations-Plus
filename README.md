@@ -3,15 +3,13 @@
 
 *Learn the difference between regular agents and **Power-Prompted** agents using Google’s Agentic Development Kit (ADK) and the new **Gemini 3.0 Pro Preview**.*
 
-
 ---
-
 
 ## 0. Overview
 
 In this extended version of the [ADK Foundations Codelab](https://codelabs.developers.google.com/devsite/codelabs/build-agents-with-adk-foundation), you will embark on a journey to build **CeritaNenek** — a virtual Indonesian grandmother who doesn't just chat, but comforts you with warmth and folklore.
 
-We will build two versions of the same agent to demonstrate how **Power Prompting** transforms an AI's personality.
+We will build few versions of the same agent to demonstrate how **Power Prompting** transforms an AI's personality.
 
 ### 📚 What You’ll Learn
 * The fundamentals of the **Agent Development Kit (ADK)**.
@@ -20,8 +18,9 @@ We will build two versions of the same agent to demonstrate how **Power Promptin
 * How to engineer empathy, cultural context, and structure into an agent.
 
 ### 🛠️ What You’ll Build
-1.  **Agent A (Basic):** A storyteller.
-2.  **Agent B (Power):** "Nenek Lestari," a warm, culturally aware agent who uses sensory details and metaphors to provide emotional support.
+1.  **Agent A (Basic):** A simple storyteller.
+2.  **Agent B (Power):** "Nenek Lestari," a warm, culturally aware agent who uses sensory details and metaphors.
+3.  **Agent C (Multimodal):** *(Optional Challenge)* An advanced version that illustrates the stories using Gemini 3's native image generation capabilities.
 
 ### 🧰 What You’ll Need
 * A **Google Cloud Project** with billing enabled.
