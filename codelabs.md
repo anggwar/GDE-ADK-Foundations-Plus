@@ -14,7 +14,7 @@ author: Angga Agia Wardhana
 
 In this workshop, we are exploring the concept of **"Garbage In, Garbage Out"** in AI. If you give an agent a generic instruction, you get a generic result.
 
-We will build **CeritaNenek** agent twice:
+We will build **CeritaNenek** agent twice, last agent will be your challenge (or you can see the modified agent.py later here):
 1.  **First:** As a standard bot with basic instructions.
 2.  **Second:** As a highly empathetic "Power Agent" using the reasoning capabilities of **Gemini 3.0 Pro Preview**.
 3.  **Third:** As a **Multimodal Agent** capable of visualizing the stories it tells using Gemini 3's native image generation.
