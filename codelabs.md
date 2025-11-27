@@ -17,6 +17,7 @@ In this workshop, we are exploring the concept of **"Garbage In, Garbage Out"** 
 We will build **CeritaNenek** agent twice:
 1.  **First:** As a standard bot with basic instructions.
 2.  **Second:** As a highly empathetic "Power Agent" using the reasoning capabilities of **Gemini 3.0 Pro Preview**.
+3.  **Third:** As a **Multimodal Agent** capable of visualizing the stories it tells using Gemini 3's native image generation.
 
 ---
 
@@ -139,10 +140,12 @@ This file holds environment-specific configurations and sensitive credentials.
 GOOGLE_GENAI_USE_VERTEXAI=1
 GOOGLE_CLOUD_PROJECT=YOUR_PROJECT_ID
 GOOGLE_CLOUD_LOCATION=YOUR_PROJECT_LOCATION
+GEMINI_API_KEY=
 ```
 - GOOGLE_GENAI_USE_VERTEXAI: This tells the ADK that you intend to use Google's Vertex AI service for your Generative AI operations. This is important for leveraging Google Cloud's managed services and advanced models.
 - GOOGLE_CLOUD_PROJECT: This variable will hold the unique identifier of your Google Cloud Project. ADK needs this to correctly associate your agent with your cloud resources and to enable billing.
 - GOOGLE_CLOUD_LOCATION: This specifies the Google Cloud region where your Vertex AI resources are located (e.g., us-central1, global). Using the correct location ensures your agent can communicate effectively with the Vertex AI services in that region.
+- GEMINI_API_KEY= optional, if we use multimodal, we need to put api key for it to work
 
 navigate to agent.py
 ### agent.py
@@ -288,7 +291,56 @@ This demonstrates that Instruction Design is just as important as the code itsel
 
 ---
 
-## 9. Deploy the Agent (Optional)
+## 9. Level Up: Multimodal Magic (Optional)
+
+You have built a wonderful text-based grandmother. But **Gemini 3.0 Pro** is a **Multimodal** model—it doesn't just read text; it can see, hear, and even paint!
+
+Imagine if Nenek didn't just *tell* you the story of "Timun Mas" (Golden Cucumber), but actually showed you a visualization of the golden cucumber glowing in the forest?
+
+### The Concept
+In ADK, we can give our agent **Tools**. A tool is just a python function that the agent can "call" when it needs to do something.
+
+We can create a tool called `create_illustration` that uses Gemini 3's native image generation capabilities.
+
+### The Challenge
+When we give an agent a tool, we need to upgrade the **Instruction** again. We need to tell the Agent *when* to use the tool and to *wait* for the user.
+
+Below is an example of an **Advanced Phased Instruction** that controls the flow of conversation so the Agent doesn't rush:
+
+```python
+POWER_INSTRUCTION_V2 = """
+YOUR 3-PHASE WORKFLOW (Follow this order strictly):
+
+**PHASE 1: The Warm Welcome**
+- IF the user just arrived: Invite them to sit. Ask how their day was.
+- **STOP AND WAIT** for their reply.
+
+**PHASE 2: The Consultation**
+- IF the user tells you about their day: Empathize deeply. Offer 2 specific folklore choices.
+- **STOP AND WAIT** for their choice.
+
+**PHASE 3: The Story & The Magic**
+- IF the user chooses a story:
+   1. Begin telling the story ("Ingat cerita dulu...").
+   2. **CRITICAL:** IMMEDIATELY after telling the story, you MUST use the `create_illustration` tool.
+   3. After the tool runs, say: "Lihat, Cu. Seperti inilah bayangannya."
+"""
+```
+
+### The Result
+If implemented correctly, your agent will be able to generate scenes like this on the fly:
+
+![Nenek Illustration](https://storage.googleapis.com/gweb-cloudblog-publish/images/gemini-3-multimodal-example.png)
+*(Example: A chibi-style grandmother telling a story)*
+
+### 🧠 Challenge Mode
+We won't provide the Python code for the tool here. Instead, use your new Power Prompting skills!
+
+**Ask Gemini:** *"How do I add a Python tool to my Google ADK agent that uses Gemini 3's `generate_content` to create images?"*
+
+---
+
+## 10. Deploy the Agent (Optional)
 
 Deploy your agent using Cloud Run:
 ```bash
