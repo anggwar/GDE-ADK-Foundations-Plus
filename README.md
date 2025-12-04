@@ -38,9 +38,9 @@ By the end of this codelab, you will:
 
 ---
 
-## 🚀 Quick Start
+## 🚀 Self-Paced
 
-**1. Clone the repository:**
+**1. Clone the repository to explore it on your own:**
 ```bash
 git clone [https://github.com/anggwar/GDE-ADK-Foundations-Plus.git](https://github.com/anggwar/GDE-ADK-Foundations-Plus.git)
 cd GDE-ADK-Foundations-Plus
