@@ -334,7 +334,7 @@ YOUR 3-PHASE WORKFLOW (Follow this order strictly):
 ### The Result
 If implemented correctly, your agent will be able to generate scenes like this on the fly:
 
-![Nenek Illustration](https://storage.googleapis.com/gweb-cloudblog-publish/images/gemini-3-multimodal-example.png)
+![Nenek Illustration](./assets/cerita-nenek.png)
 *(Example: A chibi-style grandmother telling a story)*
 
 ### 🧠 Challenge Mode
