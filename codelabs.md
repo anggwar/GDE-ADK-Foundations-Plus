@@ -227,7 +227,6 @@ You have two options to access the web development UI:
 - Click Change and Preview
 
 Test it: Type "Hello" or ask for a story. Notice how the response is factual and perhaps a bit "direct." This is the result of our basic instruction.
-![screenshot-placeholder-create-notebook](./assets/basic agent 1.png)
 
 ---
 
@@ -273,7 +272,6 @@ root_agent = Agent(
 ```
 Restart the agent command: `adk web`
 
-![screenshot-placeholder-create-notebook](./assets/power agent 1.png)
 
 ### Power Prompting tips:
 You can ask gemini on the web to create the power prompt for you. You can either describe your requirements
@@ -284,6 +282,9 @@ Or just type: `Turn this into power prompt ...`
 ## 8. Compare the Experience
 
 Chat with Nenek Lestari. Try saying: "Halo nek"
+
+![screenshot-placeholder-create-notebook](./assets/basic-agent-1.png)
+![screenshot-placeholder-create-notebook](./assets/power-agent-1.png)
 
 Compare the differences:
 - Story depth: Is it just a plot summary, or a narrative?
