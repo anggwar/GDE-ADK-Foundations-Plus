@@ -344,24 +344,6 @@ We won't provide the Python code for the tool here. Instead, use your new Power 
 
 ---
 
-## 10. Deploy the Agent (Optional)
-
-Deploy your agent using Cloud Run:
-```bash
-gcloud run deploy ceritanenek \
-  --source . \
-  --platform managed \
-  --region asia-southeast2 \
-  --allow-unauthenticated
-```
-
-Test it:
-```bash
-curl https://<your-agent-url>/query -d "Halo nek"
-```
-
----
-
 ## 10. Wrap Up
 You have successfully built **CeritaNenek**! 
 By starting with `adk create` and upgrading the code, you learned:
